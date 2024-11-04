@@ -1,0 +1,17 @@
+export const HeaderNavigation = [
+   {title : "Home",
+    link:"/",
+   },  
+   {title : "Shope",
+    link:"/shope",
+   },   
+   {title : "About",
+    link:"/about",
+   },   
+   {title : "Contact",
+    link:"/contact",
+   },  
+   {title : "Orders",
+    link:"/orders",
+   },  
+]

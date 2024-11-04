@@ -10,7 +10,7 @@ const Search = () => {
       onChange={(e) => setSearch(e.target.value)}
       value={search}
       />
-      {search ?(<IoClose/>):(<CiSearch className='text-xl absolute top-3 right-4'/>)}
+      {search ?(<IoClose onClick={()=>setSearch("")} className='text-xl absolute top-3 right-4 hover:text-red-600 cursor-pointer duration-300'/>):(<CiSearch className='text-xl absolute top-3 right-4'/>)}
     </div>
   )
 }
