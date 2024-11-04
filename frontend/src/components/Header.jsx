@@ -23,7 +23,7 @@ const Header = () => {
           }
           <button className='text-2xl hover:text-primary hoverEffect relative group'>
             <FaShoppingCart/>
-            <span className='absolute -right-3 -top-2 w-3.5 h-3.5 rounded-full text-[9px] bg-primary text-white flex items-center justify-center bg-lightText group-hover:bg-primary hoverEffect'>0</span>
+            <span className='absolute -right-3 -top-2 w-3.5 h-3.5 rounded-full text-[9px] text-white flex items-center justify-center bg-lightText group-hover:bg-primary hoverEffect'>0</span>
           </button>
           <button className='text-2xl hover:text-primary hoverEffect'>
             <FaUserAlt/>
