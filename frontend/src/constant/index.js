@@ -39,5 +39,6 @@ export const BannerData = [
       from:299.99,
       sale:"Wekend Sale",
       image: bannerImgThree,
-   }
+   },
 ]
+

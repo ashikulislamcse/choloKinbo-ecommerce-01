@@ -5,108 +5,115 @@ import { BannerData } from '../constant';
 import Container from './container';
 import { useNavigate } from 'react-router-dom';
 const Banner = () => {
-    const Navigate = useNavigate();
-    const [dotActive,setDotActive] = useState(0);
+        const Navigate = useNavigate();
+        const [dotActive, setDotActive] = useState(0);
+
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        arrows:false,
-        beforeChange:(prev,next)=>{
+        arrows: false,
+        autoplay: true, 
+        autoplaySpeed: 2000,
+        beforeChange: (prev, next) => {
             setDotActive(next);
         },
-        appendDots:(dots)=>(
+        appendDots: (dots) => (
             <div
-            style ={{
-                position:"absolute",
-                bottom:30,
-                left:"50%",
-                trasform: "translateX(-50%",
-            }}
+                style={{
+                    position: "absolute",
+                    bottom: 30,
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                }}
             >
-            <ul
-            style = {{
-                margin: "0px",
-                display:"flex",
-                alignItems:"center",
-                gap:"10px",
-            }}               
-            >
-            {" "}
-            {dots}{" "}
-            </ul>
-        </div>
+                <ul
+                    style={{
+                        margin: "0px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                    }}
+                >
+                    {dots}
+                </ul>
+            </div>
         ),
-        customPaging:(i)=>(
-            <div style={i===dotActive ?{
-                width:"50px",
-                height:"15px",
-                backgroundColor:"#262626",
-                cursor:"pointer",
-                borderRadius:"20px",
-            } : 
-            {
-                width:"15px",
-                height:"15px",
-                backgroundColor:"#ffffff",
-                cursor:"pointer",
-                borderRadius:"50%px",
-            }
-            }
-        />
+        customPaging: (i) => (
+            <div
+                style={
+                    i === dotActive
+                        ? {
+                            width: "50px",
+                            height: "15px",
+                            backgroundColor: "#262626",
+                            cursor: "pointer",
+                            borderRadius: "20px",
+                        }
+                        : {
+                            width: "15px",
+                            height: "15px",
+                            backgroundColor: "#ffffff",
+                            cursor: "pointer",
+                            borderRadius: "50%",
+                        }
+                }
+            />
         ),
-        responsive:[
+        responsive: [
             {
                 breakpoint: 576,
                 settings: {
                     dots: true,
-
-                    appendDots:(dots)=>(
+                    appendDots: (dots) => (
                         <div
-                        style ={{
-                            position:"absolute",
-                            bottom:30,
-                            left:"50%",
-                            trasform: "translateX(-50%",
-                        }}
+                            style={{
+                                position: "absolute",
+                                bottom: 30,
+                                left: "50%",
+                                transform: "translateX(-50%)",
+                            }}
                         >
-                        <ul
-                        style = {{
-                            margin: "0px",
-                            display:"flex",
-                            alignItems:"center",
-                            gap:"10px",
-                        }}               
-                        >
-                        {" "}
-                        {dots}{" "}
-                        </ul>
-                    </div>
+                            <ul
+                                style={{
+                                    margin: "0px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "10px",
+                                }}
+                            >
+                                {dots}
+                            </ul>
+                        </div>
                     ),
-                    customPaging:(i)=>(
-                        <div style={i===dotActive ?{
-                            width:"40px",
-                            height:"10px",
-                            backgroundColor:"#262626",
-                            cursor:"pointer",
-                            borderRadius:"20px",
-                        } : 
-                        {
-                            width:"10px",
-                            height:"10px",
-                            backgroundColor:"#ffffff",
-                            cursor:"pointer",
-                            borderRadius:"50%px",
-                        }
-                        }
-                    />
+                    customPaging: (i) => (
+                        <div
+                            style={
+                                i === dotActive
+                                    ? {
+                                        width: "40px",
+                                        height: "10px",
+                                        backgroundColor: "#262626",
+                                        cursor: "pointer",
+                                        borderRadius: "20px",
+                                    }
+                                    : {
+                                        width: "10px",
+                                        height: "10px",
+                                        backgroundColor: "#ffffff",
+                                        cursor: "pointer",
+                                        borderRadius: "50%",
+                                    }
+                            }
+                        />
                     ),
-                }
-            }
-        ]
-      };
+                },
+            },
+        ],
+    };
+
   return (
     <div className='w-full max-h-[600px]'>
         <Slider {...settings}>

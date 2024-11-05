@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {logo} from "../assets/images/index.js"
 import Container from './container.jsx'
 import Search from './search.jsx'
@@ -7,7 +7,15 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { HeaderNavigation } from '../constant/index.js';
 import { Link, NavLink } from 'react-router-dom';
+import { Dialog, DialogPanel } from '@headlessui/react'
+import Title from './Title'
+import { IoClose } from "react-icons/io5";
+import SocialLink from './ui/SocialLink.jsx'
+
+
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  
   return (
     <div className='border-b-[2px] border-slate-300 sticky top-0 z-50 bg-white'>
       <Container className={'py-7 flex items-center gap-x-3 md:gap-x-7 justify-between'}>
@@ -30,9 +38,43 @@ const Header = () => {
             <FaUserAlt/>
           </NavLink>       
         </div>
-        <button className='text-3xl text-lightText hover:text-primary md:hidden  hoverEffect'>
+        <button onClick={()=>setIsOpen(true)} className='text-3xl text-lightText hover:text-primary md:hidden  hoverEffect'>
           <IoMdMenu/>
         </button>
+        {/* Dialog button */}
+        <Dialog open={isOpen} className="relative z-50 md:hidden text-white/80" onClose={()=>setIsOpen(false)}>
+        <div className="fixed inset-0 z-50 w-screen items-center justify-center p-4 bg-black/90">
+            <DialogPanel
+              transition
+              className="w-[94%] space-y-4 bg-primary p-4 border border-lightText rounded-md absolute top-10"
+            >
+              <div className='flex items-center justify-between gap-5'>
+                <Title className='text-xl text-white'>CholoKinbo</Title>
+                <button onClick={()=>setIsOpen(false)} className='text-white/40 text-2xl hover:text-red-600 duration-300 border border-white/20 rounded-sm hover:border-white/40'>
+                  <IoClose/>
+                </button>
+              </div>
+              <div className='flex flex-col gap-5 pt-5'>
+                {HeaderNavigation?.map((item)=>(
+                  <NavLink onClick={()=>setIsOpen(false)} key={item?.title} to = {item?.link} className='hover:text-white duration-300 relative group flex items-center gap-2'>
+                    <span className='w-2.5 h-2.5 rounded-full border border-white/80 inline-flex group-hover:text-white duration-300'/>
+                    {item?.title}
+                    <span className='absolute w-full h-[1px] bg-white/20 left-0 -bottom-1 group-hover:bg-white duration-300'/>
+                  </NavLink>
+                ))}
+                <NavLink onClick={()=>setIsOpen(false)} to='/signin' className='hover:text-white duration-300 relative group flex items-center gap-2'>
+                  <span className='w-2.5 h-2.5 rounded-full border border-white/80 inline-flex group-hover:text-white duration-300'/>
+                    {' '}
+                    Signin
+                    <span className='absolute w-full h-[1px] bg-white/20 left-0 -bottom-1 group-hover:bg-white duration-300'/>
+                </NavLink>
+              </div>
+              <div className='pt-2'>
+                <SocialLink/>
+              </div>
+            </DialogPanel>
+        </div>
+      </Dialog>
       </Container>
     </div>
   )
