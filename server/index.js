@@ -3,6 +3,7 @@ import 'dotenv/config'
 import dbConnet from "./config/mongodb.js";
 import userRouter from "./Routes/userRouter.js";
 import cors from 'cors'
+import UserModel from "./Models/UserModel.js";
 const app = express();
 const port =process.env.PORT || 8000;
 dbConnet()

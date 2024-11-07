@@ -14,7 +14,7 @@ function App() {
   return (
     <main className="w-full bg-gray-50 min-h-screen">
       {
-        token === " "?(<Login/>):(
+        token === " "?(<Login setToken={setToken}/>):(
           <>
           <Navbar token={token} setToken={setToken}/>
             <div className="flex w-full">
@@ -28,6 +28,7 @@ function App() {
                   <Route path="/list" element={<List/>}/>
                   <Route path="/orders" element={<Orders/>}/>
                   <Route path="/users" element={<Users/>}/>
+                  <Route path="/admin" element={<Login/>}/>
                 </Routes>
               <div/>
             </div>

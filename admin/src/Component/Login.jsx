@@ -1,24 +1,32 @@
 import React, { useState } from 'react';
 import logo from '../assets/images/KinBo.png';
 import Title from './title';
-import toast from 'react-hot-toast'
+import axios from 'axios'
 import { serverUrl } from '../../config';
-import axios from 'axios';
+import toast from 'react-hot-toast';
 
-const Login = ({ setToken }) => {
+const Login = ({setToken}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleAdminLogin = async (e) => {
+  const handleLogin =async(e)=>{
     e.preventDefault();
-        try {
-          const response = await axios.post(serverUrl + '/api/user/admin', { email, password });
-            const data = response?.data;
-            console.log(data);
-
-        } catch (error) {
-            console.log("Login Error",error);
-            toast.error(error?.message);
+    try {
+      const response =await axios.post(serverUrl + '/api/user/admin', 
+        { email, 
+          password,
+        });
+        const data = response?.data;
+        if(data?.success){
+          setToken(data?.token)
+          toast.success(data?.message)
+        }else{
+          toast.error(data?.message)
         }
+
+    } catch (error) {
+        console.log("Login Error",error);
+        toast.error(error?.message);
+    }
   }
   return (
     <div className='flex flex-col gap-2 bg-gray-300 min-h-screen items-center justify-center'>
@@ -27,7 +35,7 @@ const Login = ({ setToken }) => {
       </div>
       <div className='bg-white p-5 min-w-96 shadow-xl rounded-md'>
         <Title className={'text-xl font-bold'}>Admin Panel</Title>
-        <form onSubmit={handleAdminLogin} className='flex flex-col gap-4 mt-4'>
+        <form onSubmit={handleLogin} className='flex flex-col gap-4 mt-4'>
           <div>
             <p className='text-sm font-semibold'>Email Address</p>
             <input

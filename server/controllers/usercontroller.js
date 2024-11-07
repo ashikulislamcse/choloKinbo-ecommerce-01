@@ -137,7 +137,9 @@ const AdminLogin = async (req,res)=>{
                 token,
                 message:"Welcome Admin User..",
             })
-        }         
+        }else{
+            res.json({success:false, message:'invalid credential'})
+        }       
     } catch (error) {
         console.log('Admin Login Error',error);
         res.json({success:true, message: error?.message}); 
